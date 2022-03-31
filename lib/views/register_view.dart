@@ -43,8 +43,9 @@ class _RegisterViewState extends State<RegisterView> {
             enableSuggestions: false,
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
-            decoration:
-                const InputDecoration(hintText: 'Enter your email here'),
+            decoration: const InputDecoration(
+              hintText: 'Enter your email here',
+            ),
           ),
           TextField(
             controller: _password,
@@ -79,7 +80,7 @@ class _RegisterViewState extends State<RegisterView> {
               } on InvalidEmailAuthException {
                 await showErrorDialog(
                   context,
-                  'This is an invalid email address.=',
+                  'This is an invalid email address',
                 );
               } on GenericAuthException {
                 await showErrorDialog(

@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,9 +14,9 @@ class NotesService {
 
   //create a singleton
   static final NotesService _shared = NotesService._sharedInstance();
-  NotesService._sharedInstance(){
+  NotesService._sharedInstance() {
     _notesStreamController = StreamController<List<DatabaseNote>>.broadcast(
-      onListen:() {
+      onListen: () {
         _notesStreamController.sink.add(_notes);
       },
     );
@@ -51,6 +51,7 @@ class NotesService {
   }) async {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
+    //make sure note exists
     await getNote(id: note.id);
 
     final updatesCount = await db.update(noteTable, {
@@ -129,7 +130,7 @@ class NotesService {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
 
-    //make syre owner exists in the database with the correct id
+    //make sure owner exists in the database with the correct id
     final dbUser = await getUser(email: owner.email);
     if (dbUser != owner) {
       throw CouldNotFindUser();
@@ -302,7 +303,7 @@ class DatabaseNote {
 
   @override
   String toString() =>
-      'Note, ID = $id, userID = $userId, isSyncedWithCloud = $isSyncedWithCloud';
+      'Note, ID = $id, userID = $userId, isSyncedWithCloud = $isSyncedWithCloud, text = $text';
 
   @override
   bool operator ==(covariant DatabaseNote other) => id == other.id;

@@ -2,8 +2,6 @@ import 'package:firstproject/constants/routes.dart';
 import 'package:firstproject/services/auth/auth_exceptions.dart';
 import 'package:firstproject/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as devtools show log;
-
 import '../utilities/dialogs/error_dialog.dart';
 
 class LoginView extends StatefulWidget {
@@ -44,8 +42,9 @@ class _LoginViewState extends State<LoginView> {
             enableSuggestions: false,
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
-            decoration:
-                const InputDecoration(hintText: 'Enter your email here'),
+            decoration: const InputDecoration(
+              hintText: 'Enter your email here',
+            ),
           ),
           TextField(
             controller: _password,
