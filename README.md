@@ -1,6 +1,6 @@
-# firstproject
+# Notes App
 
-A new Flutter project.
+A Notes App created with Flutter and Firebase.
 
 ## Getting Started
 
